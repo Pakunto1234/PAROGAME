@@ -8,11 +8,24 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
-<body>
+<body class="vista-escritorio">
     <main class="app-shell">
         <header class="topbar">
             <div class="brand">PARO<span>GAME</span></div>
             <p class="chapter-label">Simulador social · decisiones</p>
+            <button id="boton-vista" class="vista-button" type="button" aria-pressed="false" aria-label="Cambiar a vista móvil">
+                <span class="vista-iconos" aria-hidden="true">
+                    <svg class="vista-icono vista-icono-escritorio" viewBox="0 0 24 24">
+                        <path d="M3 5.5h18a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M8 20.5h8M12 17.5v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="vista-icono vista-icono-movil" viewBox="0 0 24 24">
+                        <rect x="6" y="2.5" width="12" height="19" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M10 18.5h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span id="texto-vista">Vista: Escritorio</span>
+            </button>
         </header>
 
         <section id="pantalla-creacion" class="screen pantalla-creacion" aria-labelledby="titulo-creacion">
@@ -32,7 +45,10 @@
                         <label class="archetype-option">
                             <input type="radio" name="origen" value="espanol" checked>
                             <span class="archetype-card">
-                                <span class="archetype-icon" aria-hidden="true">ES</span>
+                                <svg class="bandera" viewBox="0 0 32 24" role="img" aria-label="Bandera de España">
+                                    <rect width="32" height="24" fill="#AA151B"/>
+                                    <rect y="6" width="32" height="12" fill="#F1BF00"/>
+                                </svg>
                                 <span>
                                     <strong>Origen local</strong>
                                     <small>1.100 Parocoins · papeles, título e idioma en regla.</small>
@@ -43,7 +59,11 @@
                         <label class="archetype-option">
                             <input type="radio" name="origen" value="latinoamericano">
                             <span class="archetype-card">
-                                <span class="archetype-icon" aria-hidden="true">LAT</span>
+                                <svg class="bandera" viewBox="0 0 32 24" role="img" aria-label="Bandera de Colombia">
+                                    <rect width="32" height="24" fill="#FCD116"/>
+                                    <rect y="12" width="32" height="6" fill="#003893"/>
+                                    <rect y="18" width="32" height="6" fill="#CE1126"/>
+                                </svg>
                                 <span>
                                     <strong>Origen latinoamericano</strong>
                                     <small>500 Parocoins · experiencia laboral, pero sin papeles ni título.</small>
@@ -54,7 +74,10 @@
                         <label class="archetype-option">
                             <input type="radio" name="origen" value="magrebi">
                             <span class="archetype-card">
-                                <span class="archetype-icon" aria-hidden="true">MAG</span>
+                                <svg class="bandera" viewBox="0 0 32 24" role="img" aria-label="Bandera de Marruecos">
+                                    <rect width="32" height="24" fill="#C1272D"/>
+                                    <path d="M16 5.2 17.65 9.74 22.66 10.18 18.67 13.1 20.11 17.67 16 14.8 11.89 17.67 13.33 13.1 9.34 10.18 14.35 9.74Z" fill="none" stroke="#006233" stroke-width="1.8" stroke-linejoin="round"/>
+                                </svg>
                                 <span>
                                     <strong>Origen magrebí</strong>
                                     <small>500 Parocoins · sin papeles, sin título y con barrera idiomática.</small>

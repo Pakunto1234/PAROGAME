@@ -222,16 +222,17 @@ h2 {
     transform: translateX(4px);
 }
 
-.archetype-icon {
-    display: grid;
-    width: 42px;
-    height: 42px;
-    place-items: center;
+.archetype-icon,
+.bandera {
+    display: block;
+    width: 34px;
+    height: 26px;
     border: 1px solid var(--linea);
-    color: var(--dorado);
-    font-family: Georgia, serif;
-    font-size: 0.85rem;
-    font-weight: 700;
+    border-radius: 2px;
+}
+
+.bandera {
+    flex: 0 0 auto;
 }
 
 .archetype-card strong {
@@ -296,6 +297,127 @@ h2 {
     background: var(--dorado-claro);
     outline: none;
     transform: translateY(-2px);
+}
+
+.vista-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 38px;
+    padding: 7px 11px;
+    color: var(--texto);
+    border: 1px solid var(--linea);
+    border-radius: 3px;
+    background: rgba(24, 32, 34, 0.72);
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.vista-button:hover,
+.vista-button:focus-visible {
+    border-color: var(--dorado);
+    background: rgba(229, 185, 101, 0.08);
+    color: var(--dorado-claro);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.vista-button[aria-pressed="true"] {
+    border-color: var(--dorado);
+    background: rgba(229, 185, 101, 0.1);
+    color: var(--dorado-claro);
+}
+
+.vista-iconos {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.vista-icono {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+}
+
+.vista-icono-movil {
+    display: none;
+}
+
+body.vista-movil .vista-icono-escritorio {
+    display: none;
+}
+
+body.vista-movil .vista-icono-movil {
+    display: block;
+}
+
+body.vista-movil .app-shell {
+    width: min(100% - 26px, 430px);
+    margin-top: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(232, 237, 225, 0.18);
+    border-radius: 28px;
+    box-shadow: 0 0 0 8px #080b0c, var(--sombra);
+}
+
+body.vista-movil .topbar {
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+body.vista-movil .intro-layout {
+    display: block;
+    min-height: auto;
+}
+
+body.vista-movil .intro-copy {
+    padding: 36px 0 32px;
+}
+
+body.vista-movil h1 {
+    font-size: clamp(3.2rem, 15vw, 5rem);
+}
+
+body.vista-movil .selection-panel {
+    padding: 20px;
+}
+
+body.vista-movil .hud {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+body.vista-movil .hud-item:first-child {
+    grid-column: 1 / -1;
+}
+
+body.vista-movil .story-card {
+    min-height: 420px;
+    padding: 26px;
+}
+
+body.vista-movil .story-card h2 {
+    margin-top: 72px;
+    font-size: clamp(2.5rem, 12vw, 4rem);
+}
+
+body.vista-movil .choices {
+    grid-template-columns: 1fr;
+}
+
+body.vista-movil .choice-button {
+    min-height: 65px;
+}
+
+body.vista-movil .final-stats {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+body.vista-movil .pantalla-final {
+    margin-top: 60px;
 }
 
 .game-screen {
@@ -574,4 +696,74 @@ h2 {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/* La clase de escritorio anula las reglas responsivas para que el botón
+ * permita previsualizar la versión de PC incluso en una pantalla pequeña. */
+body.vista-escritorio .app-shell {
+    width: min(100% - 32px, 1080px);
+    margin-top: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+body.vista-escritorio .topbar {
+    flex-wrap: nowrap;
+    margin-bottom: 52px;
+}
+
+body.vista-escritorio .intro-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 440px);
+    align-items: center;
+    gap: clamp(40px, 8vw, 110px);
+    min-height: 610px;
+}
+
+body.vista-escritorio .intro-copy {
+    padding: 0;
+}
+
+body.vista-escritorio h1 {
+    font-size: clamp(3.5rem, 8vw, 7.4rem);
+}
+
+body.vista-escritorio .selection-panel {
+    padding: 26px;
+}
+
+body.vista-escritorio .hud {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+body.vista-escritorio .hud-item:first-child {
+    grid-column: auto;
+}
+
+body.vista-escritorio .story-card {
+    min-height: 390px;
+    padding: clamp(28px, 6vw, 64px);
+}
+
+body.vista-escritorio .story-card h2 {
+    margin: 82px 0 18px;
+    font-size: clamp(2.3rem, 6vw, 4.8rem);
+}
+
+body.vista-escritorio .choices {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+body.vista-escritorio .choice-button {
+    min-height: 80px;
+}
+
+body.vista-escritorio .final-stats {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+body.vista-escritorio .pantalla-final {
+    margin: 90px auto 0;
 }

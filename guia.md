@@ -5,7 +5,15 @@
 - `Index.html`: contiene la estructura de las pantallas y los elementos visibles.
 - `styles.css`: contiene los colores, la distribución y el diseño responsivo.
 - `script.js`: contiene los orígenes, las reglas y la lista de eventos.
-- Esta guía: explica cómo ampliar el juego sin cambiar la lógica principal.
+- `guia.md`: explica cómo ampliar el juego sin cambiar la lógica principal.
+
+## Cambiar la presentación
+
+El botón **Vista web / Vista móvil** de la parte superior cambia la presentación visual entre una distribución amplia de PC y una distribución estrecha de móvil. Este cambio solo afecta al diseño; no modifica las reglas ni los datos de la partida.
+
+## Iconos de origen
+
+Las banderas de España, Colombia y Marruecos están dibujadas con SVG en `Index.html`, dentro de las tarjetas de selección de origen. Al usar SVG, los iconos se ven incluso en navegadores que no muestran emojis de banderas.
 
 ## Reglas actuales
 

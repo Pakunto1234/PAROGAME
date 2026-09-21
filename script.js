@@ -201,6 +201,8 @@ const elementos = {
     finalEstabilidad: $("#final-estabilidad"),
     finalPapeles: $("#final-papeles"),
     botonReiniciar: $("#boton-reiniciar"),
+    botonVista: $("#boton-vista"),
+    textoVista: $("#texto-vista"),
 };
 
 const formatoNumero = new Intl.NumberFormat("es-ES", {
@@ -431,6 +433,16 @@ function inicializarTextos() {
     elementos.contadorEventos.textContent = `${eventos.length} decisiones · 1 año por decisión`;
 }
 
+/* Alterna la presentación visual entre la vista web y la vista móvil. */
+function cambiarVista() {
+    const esVistaMovil = document.body.classList.toggle("vista-movil");
+    document.body.classList.toggle("vista-escritorio", !esVistaMovil);
+
+    elementos.botonVista.setAttribute("aria-pressed", String(esVistaMovil));
+    elementos.botonVista.setAttribute("aria-label", esVistaMovil ? "Cambiar a vista web" : "Cambiar a vista móvil");
+    elementos.textoVista.textContent = esVistaMovil ? "Vista móvil" : "Vista web";
+}
+
 /* Registra los controles del juego. */
 document.querySelectorAll("input[name='origen']").forEach((input) => {
     input.addEventListener("change", actualizarVistaPrevia);
@@ -443,6 +455,7 @@ elementos.listaOpciones.addEventListener("click", (evento) => {
     elegirOpcion(Number(boton.dataset.indice));
 });
 elementos.botonReiniciar.addEventListener("click", reiniciarJuego);
+elementos.botonVista.addEventListener("click", cambiarVista);
 
 inicializarTextos();
 actualizarVistaPrevia();
