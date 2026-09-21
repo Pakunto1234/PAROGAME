@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101416">
+    <title>PAROGAME | Simulador de decisiones</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="app-shell">
+        <header class="topbar">
+            <div class="brand">PARO<span>GAME</span></div>
+            <p class="chapter-label">Simulador social · decisiones</p>
+        </header>
+
+        <section id="pantalla-creacion" class="screen pantalla-creacion" aria-labelledby="titulo-creacion">
+            <div class="intro-layout">
+                <div class="intro-copy">
+                    <p class="kicker">Una vida, varias decisiones</p>
+                    <h1 id="titulo-creacion">La vida también cotiza.</h1>
+                    <p id="descripcion-creacion" class="intro-text">Empiezas con 18 años, una mochila y un puñado de Parocoins. Cada decisión avanza un año y cambia tu futuro.</p>
+                    <p class="rules-summary"><span id="contador-eventos" class="chapter-label"></span> Una decisión equivale a un año. Cuida tu dinero y tu estabilidad.</p>
+                </div>
+
+                <form id="formulario-personaje" class="selection-panel">
+                    <h2>Selecciona tu origen</h2>
+                    <p class="panel-hint">Tus papeles, formación, experiencia e idioma cambiarán tu camino.</p>
+
+                    <div class="archetypes">
+                        <label class="archetype-option">
+                            <input type="radio" name="origen" value="espanol" checked>
+                            <span class="archetype-card">
+                                <span class="archetype-icon" aria-hidden="true">ES</span>
+                                <span>
+                                    <strong>Origen local</strong>
+                                    <small>1.100 Parocoins · papeles, título e idioma en regla.</small>
+                                </span>
+                            </span>
+                        </label>
+
+                        <label class="archetype-option">
+                            <input type="radio" name="origen" value="latinoamericano">
+                            <span class="archetype-card">
+                                <span class="archetype-icon" aria-hidden="true">LAT</span>
+                                <span>
+                                    <strong>Origen latinoamericano</strong>
+                                    <small>500 Parocoins · experiencia laboral, pero sin papeles ni título.</small>
+                                </span>
+                            </span>
+                        </label>
+
+                        <label class="archetype-option">
+                            <input type="radio" name="origen" value="magrebi">
+                            <span class="archetype-card">
+                                <span class="archetype-icon" aria-hidden="true">MAG</span>
+                                <span>
+                                    <strong>Origen magrebí</strong>
+                                    <small>500 Parocoins · sin papeles, sin título y con barrera idiomática.</small>
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div class="stats-preview" aria-label="Atributos iniciales">
+                        <div class="stat-preview">
+                            <span>Parocoins</span>
+                            <strong id="vista-previa-dinero">1.100</strong>
+                        </div>
+                        <div class="stat-preview">
+                            <span>Estabilidad</span>
+                            <strong id="vista-previa-estabilidad">70%</strong>
+                        </div>
+                        <div class="stat-preview">
+                            <span>Papeles</span>
+                            <strong id="vista-previa-papeles">Sí</strong>
+                        </div>
+                    </div>
+
+                    <button class="primary-button" type="submit">Empezar a los 18 <span aria-hidden="true">→</span></button>
+                </form>
+            </div>
+        </section>
+
+        <section id="pantalla-juego" class="screen pantalla-juego" aria-live="polite" hidden>
+            <div class="hud" aria-label="Atributos del personaje">
+                <div class="hud-item">
+                    <span class="hud-label">Edad</span>
+                    <strong id="hud-edad" class="hud-value">18</strong>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Parocoins</span>
+                    <strong id="hud-dinero" class="hud-value">1.100</strong>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Estabilidad</span>
+                    <strong id="hud-estabilidad" class="hud-value">70%</strong>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Papeles</span>
+                    <strong id="hud-papeles" class="hud-value">Sí</strong>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Formación</span>
+                    <strong id="hud-titulo" class="hud-value">Sí</strong>
+                </div>
+            </div>
+
+            <article class="story-card">
+                <div class="story-meta">
+                    <span id="evento-capitulo">18 años</span>
+                    <span id="evento-origen">Origen local</span>
+                </div>
+                <h2 id="evento-titulo"></h2>
+                <p id="evento-texto"></p>
+            </article>
+
+            <div class="choices-heading">
+                <h3>¿Qué decides hacer?</h3>
+                <span id="contador-opciones"></span>
+            </div>
+            <div id="lista-opciones" class="choices"></div>
+        </section>
+
+        <section id="pantalla-final" class="screen pantalla-final" aria-live="polite" hidden>
+            <p id="final-indicador" class="kicker">Evaluación final</p>
+            <h2 id="final-titulo"></h2>
+            <p id="final-texto"></p>
+
+            <div class="final-stats" aria-label="Resultado final">
+                <div class="final-stat">
+                    <span>Edad</span>
+                    <strong id="final-edad"></strong>
+                </div>
+                <div class="final-stat">
+                    <span>Parocoins</span>
+                    <strong id="final-dinero"></strong>
+                </div>
+                <div class="final-stat">
+                    <span>Estabilidad</span>
+                    <strong id="final-estabilidad"></strong>
+                </div>
+                <div class="final-stat">
+                    <span>Papeles</span>
+                    <strong id="final-papeles"></strong>
+                </div>
+            </div>
+
+            <button id="boton-reiniciar" class="primary-button" type="button">Elegir otro origen <span aria-hidden="true">↗</span></button>
+        </section>
+    </main>
+</body>
+</html>
